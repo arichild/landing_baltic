@@ -10,8 +10,20 @@
 
   <title>Start-project</title>
 
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
   <!-- magnific -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+  <!-- splide -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide.min.css">
+
+  <!-- intl-tel-input -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.5.0/build/css/intlTelInput.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
 
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -20,6 +32,43 @@
 <div class="wrapper" id="wrapper">
   <header class="header" id="header">
     <div class="container">
-      <h1>header</h1>
+      <div class="header-content">
+        <div class="header-content-left">
+          <a href="#" class="header-location">
+            <div class="header-location-img">
+              <img src="./images/location.svg" alt="">
+            </div>
+
+            <div class="header-location-name">ul. Domaniewska 44, of 638, Warszawa</div>
+          </a>
+        </div>
+
+        <a href="#" class="header-content-logo">
+          <img src="./images/logo.svg" alt="">
+        </a>
+
+        <div class="header-content-right">
+          <a href="tel:+48451032570" class="header-phone">
+            <div class="header-phone-img">
+              <img src="./images/phone.svg" alt="">
+            </div>
+
+            <div class="header-phone-number">+48 (451) 032-570</div>
+          </a>
+
+          <div class="header-links">
+            <a href="#"><img src="./images/viber.svg" alt=""></a>
+            <a href="#"><img src="./images/whatsup.svg" alt=""></a>
+            <a href="#"><img src="./images/tg.svg" alt=""></a>
+          </div>
+
+          <div class="header-lang">
+            <a href="#">EN</a>
+            <a href="#" class="active">RU</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <img class="header-bg" src="./images/ellipse-bg.svg" alt="">
   </header>

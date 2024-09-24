@@ -63,14 +63,21 @@ $( document ).ready(function() {
       IMask(element, {
         mask: [
           {
-            mask: '+{375} (00) 000 00 00',
+            mask: '+{375} (00) 000-00-00',
             startsWith: '375',
             overwrite: true,
             lazy: false,
             placeholderChar: '_',
           },
           {
-            mask: '+{7} (000) 000 00 00',
+            mask: '+{48} (000) 000-000',
+            startsWith: '48',
+            overwrite: true,
+            lazy: false,
+            placeholderChar: '_',
+          },
+          {
+            mask: '+{7} (000) 000-00-00',
             startsWith: '7',
             overwrite: true,
             lazy: false,
@@ -93,4 +100,176 @@ $( document ).ready(function() {
       })
     });
   }
+
+  function heightAuto(element, nameClass) {
+    setTimeout(() => {
+      const visibleEl = element.querySelectorAll('.is-visible')
+      let heights = []
+
+      visibleEl.forEach(el => {
+        let height = el.querySelector(`.${nameClass}`).offsetHeight
+
+        heights.push(height)
+    });
+
+      const maxHeight = Math.max(...heights)
+      const list = element.querySelector('.splide__list')
+
+      list.style.height = maxHeight + 'px'
+    }, 1);
+  }
+
+  if($('.splide.activity-slider')) {
+    new Splide( '.splide.activity-slider', {
+      pagination: false,
+      gap: 20,
+      perPage: 4,
+
+      breakpoints: {
+        1366: {
+          perPage: 3,
+        },
+        1024: {
+          perPage: 2,
+        },
+        768: {
+          arrows: false,
+          pagination: true
+        },
+        576: {
+          perPage: 1,
+        },
+      }
+    }).mount();
+  }
+
+  if($('.splide.info-slider')) {
+    new Splide( '.splide.info-slider', {
+      pagination: false,
+      gap: 0,
+      perPage: 4,
+      arrows: false,
+      type   : 'loop',
+      drag   : 'free',
+      autoScroll: {
+        speed: 1,
+      },
+
+      breakpoints: {
+        1366: {
+          perPage: 3,
+        },
+        1024: {
+          perPage: 2,
+        },
+        576: {
+          perPage: 1,
+        },
+      }
+    }).mount( window.splide.Extensions);
+  }
+
+  if($('.splide.advantage-slider')) {
+    const sliderBlock = document.querySelector('.splide.advantage-slider')
+    const slider = new Splide( '.splide.advantage-slider', {
+      pagination: false,
+      gap: 20,
+      perPage: 2,
+
+      breakpoints: {
+        // 1366: {
+        //   perPage: 3,
+        // },
+        // 1024: {
+        //   perPage: 2,
+        // },
+        768: {
+          arrows: false,
+          pagination: true
+        },
+        576: {
+          perPage: 1,
+        },
+      }
+    });
+
+    slider.on('mounted moved', () => {
+      heightAuto(sliderBlock, 'advantage-card')
+    });
+    slider.mount()
+  }
+
+  if($('.splide.business-slider')) {
+    new Splide( '.splide.business-slider', {
+      pagination: false,
+      arrows: false,
+      gap: 100,
+      perPage: 3,
+      // drag: false,
+
+      breakpoints: {
+        1366: {
+          gap: 60,
+          // fixedWidth : '280px',
+        },
+
+        1024: {
+          gap: 20
+        },
+        // 1024: {
+        //   perPage: 2,
+        // },
+        // 768: {
+        //   arrows: false,
+        //   pagination: true
+        // },
+        576: {
+          perPage: 1,
+          pagination: true,
+          gap: 0,
+        },
+      }
+    }).mount();
+  }
+
+  $(".ui-tel").intlTelInput({
+    initialCountry: 'PL',
+    autoHideDialCode: false,
+    autoPlaceholder: "aggressive",
+    nationalMode: false,
+    separateDialCode: false,
+    hiddenInput: "full_number",
+  });
+
+  $(".ui-tel").each(function () {
+    let hiddenInput = $(this).attr('name');
+    $("input[name="+hiddenInput+"-country-code]").val($(this).val());
+  });
+
+  $(".ui-tel").on("countrychange", function() {
+    let hiddenInput = $(this).attr("name");
+    $("input[name="+hiddenInput+"-country-code]").val(this.value);
+  });
 });
+
+
+function showPopup(src) {
+  $.magnificPopup.open({
+    items: { src: src },
+    type: 'ajax',
+    overflowY: 'scroll',
+    removalDelay: 300,
+    mainClass: 'my-mfp-zoom-in',
+    ajax: {
+      tError: 'Ошибка. <a href="%url%">Контент</a> не может быть загружен',
+    },
+    callbacks: {
+      open: function () {
+        setTimeout(function () {
+          $('.mfp-wrap').addClass('not_delay');
+          $('.white-popup').addClass('not_delay');
+        }, 700);
+      }
+    },
+  });
+}

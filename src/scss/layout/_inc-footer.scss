@@ -1,3 +1,110 @@
 .footer {
+  padding: 40px 0;
 
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+
+  &-txt {
+    display: inline;
+  }
+
+  &-license {
+    display: inline;
+    margin-right: 80px;
+  }
+
+  &-policy {
+    display: inline;
+    color: #093888;
+  }
+
+  &-create {
+    max-width: 268px;
+    flex: 0 0 268px;
+    display: inline-block;
+
+    &-title {
+      display: inline-block;
+    }
+
+    &-name {
+      padding-left: 34px;
+      position: relative;
+      display: inline-block;
+
+      &::before {
+        content: "";
+        background-image: url("../images/farba.svg");
+        background-repeat: no-repeat;
+        width: 23px;
+        height: 36px;
+        background-size: 100%;
+        position: absolute;
+        left: 5px;
+        top: -15px;
+      }
+    }
+  }
+
+  @media(max-width: 1680.99px) {
+    &-content {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+  }
+
+  @media(max-width: 1440.99px) {
+    &-content {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+  }
+
+  @media(max-width: 1366.99px) {
+    &-content {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+
+    &-license {
+      margin-right: 40px;
+    }
+  }
+
+  @media(max-width: 1024.99px) {
+    font-size: 14px;
+
+    &-content {
+      flex-direction: column;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &-txt {
+      display: block;
+      text-align: center;
+    }
+
+    &-license {
+      margin-right: 0;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    &-policy {
+      margin-bottom: 24px;
+      display: block;
+      max-width: 270px;
+    }
+
+    &-create {
+      flex: none;
+      max-width: none;
+    }
+  }
 }

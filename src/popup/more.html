@@ -1,0 +1,77 @@
+<div class="ui-popup mfp-anim more">
+  <div class="more-header">
+    <div class="ui-title uppercase white">Узнать <span>Больше</span></div>
+    <div class="more-subtitle"><b>Корпоративный тур в Исландию</b> <span>от <b>6420</b> €/чел.</span></div>
+  </div>
+
+  <form action="#" class="more-form">
+    <div class="ui-fields">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="ui-field">
+            <label for="name" class="ui-label">Ваше имя*</label>
+            <input type="text" class="ui-input" id="name" name="name">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="ui-field">
+            <label for="phone" class="ui-label">Номер телефона*</label>
+            <input type="text" class="ui-input ui-tel" id="phone" name="phone">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="ui-field">
+            <label for="email" class="ui-label">E-mail</label>
+            <input type="text" class="ui-input" id="email">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-checkbox">
+      <input type="checkbox" class="ui-checkbox-input" id="checkbox1" name="checkbox1">
+      <label for="checkbox1" class="ui-checkbox-label white">Я хочу получить информацию о лучших туристических предложениях и акциях *Администратором персональных данных является ООО Aviabaltic, расположенное в Варшаве. Подробную информацию об обработке персональных данных вы найдете по этой <a href="#">ссылке</a>.</label>
+    </div>
+
+    <button class="ui-btn uppercase">Отправить заявку</button>
+  </form>
+
+  <script>
+      jQuery(document).ready(function ($) {
+        $(".more-form").validate({
+          errorElement: "span",
+
+          rules: {
+            name: {
+              required: true,
+              lettersonly: true,
+            },
+            phone: {
+              required: true,
+              phone: true,
+            },
+            checkbox1: {
+              required: true,
+            },
+          },
+
+          errorPlacement: function (error, element) {
+            if (element.hasClass('ui-input')) {
+              element.closest('.ui-field').append(error);
+            }
+            if (element.hasClass('ui-checkbox-input')) {
+              element.closest('.ui-checkbox').append(error);
+            }
+          },
+
+          messages: {
+            checkbox1: 'Подтвердите обработку персональных данных'
+          },
+
+          submitHandler: function (form) {
+            showPopup('./popup/success.html')
+          },
+        });
+      })
+  </script>
+</div>

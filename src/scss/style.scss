@@ -10,6 +10,7 @@
 
 /* pages */
 @import "index";
+@import "popups";
 
 * {
   box-sizing: border-box;
@@ -32,9 +33,9 @@ body {
   min-height: 100%;
   font-family: $baseFont;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.42;
-  color: #000;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #2E3639;
   background-color: #fff;
 }
 
