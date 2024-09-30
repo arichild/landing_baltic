@@ -32,6 +32,8 @@
     padding-left: 43px;
     position: relative;
     display: block;
+    // width: 36px;
+    // height: 36px;
 
     &-img {
       position: absolute;
@@ -57,7 +59,8 @@
     position: relative;
     margin-right: 11px;
     display: block;
-
+    // width: 36px;
+    // height: 36px;
 
     &-img {
       position: absolute;
@@ -152,15 +155,86 @@
     }
 
     &-location {
+      position: relative;
+
       &-name {
         display: none;
+        position: absolute;
+        // left: 50%;
+        // transform: translate(-50%, 0);
+        left: -64px;
+        top: 30px;
+        font-size: 12px;
+        width: 164px;
+        padding: 10px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        border: 1px solid #EAF3FB;
+        z-index: 1;
+
+        &.active {
+          display: block;
+        }
+
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 0);
+          border: 10px solid transparent;
+          border-bottom: 10px solid #EAF3FB;
+          top: -20px;
+        }
+
+        &::after {
+          border-bottom: 10px solid #fff;
+          top: -19px;
+          left: 50%;
+          transform: translate(-50%, 0);
+         }
       }
     }
 
     &-phone {
       margin-right: 0;
+      position: relative;
+
       &-number {
         display: none;
+        position: absolute;
+        // left: 50%;
+        // transform: translate(-50%, 0);
+        left: -48px;
+        top: 30px;
+        font-size: 12px;
+        width: 130px;
+        padding: 10px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        border: 1px solid #EAF3FB;
+        z-index: 1;
+
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 0);
+          border: 10px solid transparent;
+          border-bottom: 10px solid #EAF3FB;
+          top: -20px;
+        }
+
+        &::after {
+          border-bottom: 10px solid #fff;
+          top: -19px;
+          left: 50%;
+          transform: translate(-50%, 0);
+         }
+
+
+        &.active {
+          display: block;
+        }
       }
     }
 

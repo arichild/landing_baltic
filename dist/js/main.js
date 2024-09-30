@@ -2,6 +2,7 @@ $( document ).ready(function() {
   // popup
   $(document).on("click", ".mfp-link", function () {
     var a = $(this);
+    const info = $(this).attr('data-info');
 
     $.magnificPopup.open({
       items: { src: a.attr("data-href") },
@@ -22,13 +23,27 @@ $( document ).ready(function() {
       },
 
       callbacks: {
+        change: function() {
+          const tourData = JSON.parse(info.replace(/'/g, '"'));
+          var magnificPopup = $.magnificPopup.instance;
+
+          setTimeout(function() {
+            const name = magnificPopup.content[0].querySelector('#tour-name');
+            const price = magnificPopup.content[0].querySelector('#tour-price');
+
+            name.textContent = tourData.tourName;
+            price.innerHTML = "от <b>" + tourData.tourPrice + "</b> " + tourData.currency + "/чел.";
+          }, 700);
+        },
+
         open: function() {
           document.documentElement.style.overflow = 'hidden'
         },
 
         close: function() {
           document.documentElement.style.overflow = ''
-        }
+        },
+
       }
     });
     return false;
@@ -129,12 +144,14 @@ $( document ).ready(function() {
         1366: {
           perPage: 3,
         },
-        1024: {
-          perPage: 2,
-        },
-        768: {
+        // 1024: {
+        //   // perPage: 2,
+        //   gap: 10
+        // },
+        834: {
           arrows: false,
-          pagination: true
+          pagination: true,
+          perPage: 2,
         },
         576: {
           perPage: 1,
@@ -144,19 +161,22 @@ $( document ).ready(function() {
   }
 
   if($('.splide.info-slider')) {
-    new Splide( '.splide.info-slider', {
-      pagination: false,
-      gap: 0,
-      perPage: 4,
-      arrows: false,
+    new Splide( '.info-slider', {
       type   : 'loop',
       drag   : 'free',
+      focus  : 'center',
+      pagination: false,
+      gap: 0,
+      perPage: 'auto',
+      fixedWidth: '532px',
+      arrows: false,
       autoScroll: {
-        speed: 1,
+        speed: 1.2,
       },
 
       breakpoints: {
         1366: {
+          fixedWidth: 'auto',
           perPage: 3,
         },
         1024: {
@@ -166,7 +186,7 @@ $( document ).ready(function() {
           perPage: 1,
         },
       }
-    }).mount( window.splide.Extensions);
+    }).mount(window.splide.Extensions);
   }
 
   if($('.splide.advantage-slider')) {
@@ -203,34 +223,49 @@ $( document ).ready(function() {
     new Splide( '.splide.business-slider', {
       pagination: false,
       arrows: false,
-      gap: 100,
-      perPage: 3,
-      // drag: false,
+      gap: 0,
+      perPage: 1,
+      pagination: true,
 
-      breakpoints: {
-        1366: {
-          gap: 60,
-          // fixedWidth : '280px',
-        },
+      // breakpoints: {
+      //   1024: {
+      //     perPage: 1,
 
-        1024: {
-          gap: 20
-        },
-        // 1024: {
-        //   perPage: 2,
-        // },
-        // 768: {
-        //   arrows: false,
-        //   pagination: true
-        // },
-        576: {
-          perPage: 1,
-          pagination: true,
-          gap: 0,
-        },
-      }
+      //   },
+      // }
     }).mount();
   }
+
+  const phoneBtn = $('.header-phone-img');
+  const phoneBlock = $('.header-phone-number');
+  const locationBtn = $('.header-location-img');
+  const locationBlock = $('.header-location-name');
+
+  phoneBtn.on("click", function(event) {
+      if (locationBlock.hasClass('active')) {
+          locationBlock.removeClass('active');
+      }
+      phoneBlock.toggleClass('active');
+      event.stopPropagation();
+  });
+
+  locationBtn.on("click", function(event) {
+      if (phoneBlock.hasClass('active')) {
+          phoneBlock.removeClass('active');
+      }
+      locationBlock.toggleClass('active');
+      event.stopPropagation();
+  });
+
+  $(document).on("click", function(event) {
+      if (!phoneBlock.is(event.target) && phoneBlock.has(event.target).length === 0) {
+          phoneBlock.removeClass('active');
+      }
+
+      if (!locationBlock.is(event.target) && locationBlock.has(event.target).length === 0) {
+          locationBlock.removeClass('active');
+      }
+  });
 
   $(".ui-tel").intlTelInput({
     initialCountry: 'PL',

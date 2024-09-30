@@ -1,0 +1,13 @@
+###
+POST http://localhost:4400/send-mail
+content-type: application/json
+
+{
+  "mailData": {
+    "email": "arieevq@gmail.com",
+    "phone": "+375444614854",
+    "company": "Компания",
+    "name": "Имя",
+    "message": "Сообщение из параметров запроса c асинк 2"
+  }
+}

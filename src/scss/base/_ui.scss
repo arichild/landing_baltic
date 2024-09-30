@@ -102,6 +102,7 @@
   font-weight: 700;
   margin-bottom: 14px;
   color: #fff;
+  transition: color .2s ease;
 
   @media(max-width: 1024.99px) {
      font-size: 14px;
@@ -128,6 +129,15 @@
   color: #fff;
   font-weight: 300;
   padding-bottom: 5px;
+  transition: border-color .2s ease;
+
+  &:focus {
+    border-color: #f7c200;
+  }
+
+  &:hover {
+    border-color: #f7c200;
+  }
 }
 
 .ui-field {
@@ -137,12 +147,20 @@
   &:last-child {
     margin-bottom: 0;
   }
+
+  &:focus-within .ui-label {
+    color: #f7c200;
+  }
+
+  &:hover .ui-label {
+    color: #f7c200;
+  }
 }
 
 textarea.ui-input {
   resize: vertical;
   display: block;
-  height: 108px;
+  height: 109px;
 }
 
 .ui-checkbox {
@@ -321,9 +339,12 @@ span.error {
   height: auto !important;
 }
 
-.splide__list {
-  align-items: flex-start !important;
-  transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1) 0s, height .5s ease !important;
+.iti__flag-container {
+  top: -4px;
+}
+
+.iti__arrow {
+  border-top: 4px solid #fff !important;
 }
 
 @media(max-width: 1680.99px) {
