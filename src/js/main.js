@@ -24,16 +24,18 @@ $( document ).ready(function() {
 
       callbacks: {
         change: function() {
-          const tourData = JSON.parse(info.replace(/'/g, '"'));
-          var magnificPopup = $.magnificPopup.instance;
+          if(info) {
+            const tourData = JSON.parse(info.replace(/'/g, '"'));
+            var magnificPopup = $.magnificPopup.instance;
 
-          setTimeout(function() {
-            const name = magnificPopup.content[0].querySelector('#tour-name');
-            const price = magnificPopup.content[0].querySelector('#tour-price');
+            setTimeout(function() {
+              const name = magnificPopup.content[0].querySelector('#tour-name');
+              const price = magnificPopup.content[0].querySelector('#tour-price');
 
-            name.textContent = tourData.tourName;
-            price.innerHTML = "от <b>" + tourData.tourPrice + "</b> " + tourData.currency + "/чел.";
-          }, 700);
+              name.textContent = tourData.tourName;
+              price.innerHTML = "от <b>" + tourData.tourPrice + "</b> " + tourData.currency + "/чел.";
+            }, 700);
+          }
         },
 
         open: function() {

@@ -1,16 +1,16 @@
 <div class="ui-popup mfp-anim offer">
-  <div class="ui-title uppercase white">Получить <span>предложение</span></div>
+  <div class="ui-title uppercase white">Get <span>an offer</span></div>
 
   <form action="#" class="offer-form">
     <div class="ui-fields">
       <div class="row">
         <div class="col-sm-6">
           <div class="ui-field">
-            <label for="name" class="ui-label">Ваше имя*</label>
+            <label for="name" class="ui-label">Your name*</label>
             <input type="text" class="ui-input" id="name" name="name">
           </div>
           <div class="ui-field">
-            <label for="phone" class="ui-label">Номер телефона*</label>
+            <label for="phone" class="ui-label">Phone number*</label>
             <input type="text" class="ui-input ui-tel phone-mask" id="phone" name="phone">
           </div>
           <div class="ui-field">
@@ -20,11 +20,11 @@
         </div>
         <div class="col-sm-6">
           <div class="ui-field">
-            <label for="company" class="ui-label">Компания</label>
+            <label for="company" class="ui-label">Company</label>
             <input type="text" class="ui-input" id="company" name="company">
           </div>
           <div class="ui-field">
-            <label for="msg" class="ui-label">Сообщение</label>
+            <label for="msg" class="ui-label">Message</label>
             <textarea type="text" name="msg" class="ui-input"></textarea>
           </div>
         </div>
@@ -33,10 +33,10 @@
 
     <div class="ui-checkbox">
       <input type="checkbox" class="ui-checkbox-input" id="checkbox1" name="checkbox1">
-      <label for="checkbox1" class="ui-checkbox-label white">Я хочу получить информацию о лучших туристических предложениях и акциях *Администратором персональных данных является ООО Aviabaltic, расположенное в Варшаве. Подробную информацию об обработке персональных данных вы найдете по этой <a href="#">ссылке</a>.</label>
+      <label for="checkbox1" class="ui-checkbox-label white">I want to get information about the best travel offers and promotions *The administrator of personal data is Aviabaltic LLC, located in Warsaw. Detailed information about the processing of personal data can be found at this <a href="#"> link</a>.</label>
     </div>
 
-    <button class="ui-btn uppercase">Отправить заявку</button>
+    <button class="ui-btn uppercase">Send a request</button>
   </form>
 
   <script>
@@ -71,8 +71,8 @@
           },
 
           messages: {
-            checkbox1: 'Подтвердите обработку персональных данных',
-            email: 'Введите корректную почту',
+            checkbox1: 'Confirm the processing of personal data',
+            email: 'Enter the correct email',
           },
 
           submitHandler: function (form) {
@@ -92,10 +92,10 @@
               contentType: 'application/json',
               data: JSON.stringify(formData),
               success: function (data) {
-                showPopup('./popup/success.html');
+                showPopup('./popup/success-en.html');
               },
               error: function (jqXHR, textStatus, errorThrown) {
-                console.error('Ошибка:', textStatus, errorThrown);
+                console.error('Error:', textStatus, errorThrown);
               }
             });
           },
