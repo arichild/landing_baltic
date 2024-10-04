@@ -1152,6 +1152,14 @@
 
     &-card {
       border: 1px solid #eaf3fb;
+
+      &-img {
+        img {
+          aspect-ratio: auto;
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 }
