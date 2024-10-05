@@ -1,0 +1,188 @@
+<div class="ui-popup mfp-anim offer">
+  <div class="ui-title uppercase white">Получить <span>предложение</span></div>
+
+  <form action="#" class="offer-form">
+    <div class="ui-fields">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="ui-field">
+            <label for="name" class="ui-label">Ваше имя*</label>
+            <input type="text" class="ui-input" id="name" name="name">
+          </div>
+          <div class="ui-field">
+            <label for="phone" class="ui-label">Номер телефона*</label>
+            <input type="text" class="ui-input ui-tel phone-mask" id="phone" name="phone">
+          </div>
+          <div class="ui-field">
+            <label for="email" class="ui-label">E-mail</label>
+            <input type="text" class="ui-input" id="email" name="email">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="ui-field">
+            <label for="company" class="ui-label">Компания</label>
+            <input type="text" class="ui-input" id="company" name="company">
+          </div>
+          <div class="ui-field">
+            <label for="msg" class="ui-label">Сообщение</label>
+            <textarea type="text" name="msg" class="ui-input"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-checkbox">
+      <input type="checkbox" class="ui-checkbox-input" id="checkbox1" name="checkbox1">
+      <label for="checkbox1" class="ui-checkbox-label white">Я хочу получить информацию о лучших туристических предложениях и акциях *Администратором персональных данных является ООО Aviabaltic, расположенное в Варшаве. Подробную информацию об обработке персональных данных вы найдете по этой <a href="https://aviabaltic.com/aviabaltic_terms.pdf" target="_blank">ссылке</a>.</label>
+    </div>
+
+    <button class="ui-btn uppercase">Отправить заявку</button>
+  </form>
+
+  <script>
+      jQuery(document).ready(function ($) {
+        $(".offer-form").validate({
+          errorElement: "span",
+
+          rules: {
+            name: {
+              required: true,
+              lettersonly: true,
+            },
+            phone: {
+              required: true,
+              phone: true,
+            },
+            checkbox1: {
+              required: true,
+            },
+            email: {
+              email: true
+            }
+          },
+
+          errorPlacement: function (error, element) {
+            if (element.hasClass('ui-input')) {
+              element.closest('.ui-field').append(error);
+            }
+            if (element.hasClass('ui-checkbox-input')) {
+              element.closest('.ui-checkbox').append(error);
+            }
+          },
+
+          messages: {
+            checkbox1: 'Подтвердите обработку персональных данных',
+            email: 'Введите корректную почту',
+          },
+
+          submitHandler: function (form) {
+            const formData = {
+              mailData: {
+                email: $("#email").val(),
+                phone: $("#phone").val(),
+                company: $("#company").val(),
+                name: $("#name").val(),
+                message: $("textarea[name='msg']").val(),
+              }
+            };
+
+            $.ajax({
+              type: 'POST',
+              url: 'http://localhost:4400/send-mail',
+              contentType: 'application/json',
+              data: JSON.stringify(formData),
+              success: function (data) {
+                showPopup('./popup/success.html');
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Ошибка:', textStatus, errorThrown);
+              }
+            });
+          },
+        });
+
+        // imask
+        let phone = document.querySelectorAll('.phone-mask')
+
+        if(phone.length) {
+          phone.forEach(element => {
+            IMask(element, {
+              mask: [
+                {
+                  mask: '+{375} (00) 000-00-00',
+                  startsWith: '375',
+                  overwrite: true,
+                  lazy: false,
+                  placeholderChar: '_',
+                },
+                {
+                  mask: '+{48} (000) 000-000',
+                  startsWith: '48',
+                  overwrite: true,
+                  lazy: false,
+                  placeholderChar: '_',
+                },
+                {
+                  mask: '+{7} (000) 000-00-00',
+                  startsWith: '7',
+                  overwrite: true,
+                  lazy: false,
+                  placeholderChar: '_',
+                },
+                {
+                  mask: '+0000000000000',
+                  startsWith: '',
+                  country: 'unknown'
+                }
+              ],
+
+              dispatch: function (appended, dynamicMasked) {
+                var number = (dynamicMasked.value + appended).replace(/\D/g, '');
+
+                return dynamicMasked.compiledMasks.find(function (m) {
+                  return number.indexOf(m.startsWith) === 0;
+                });
+              }
+            })
+          });
+        }
+
+        $(".ui-tel").intlTelInput({
+          initialCountry: 'PL',
+          autoHideDialCode: false,
+          autoPlaceholder: "aggressive",
+          nationalMode: false,
+          separateDialCode: false,
+          hiddenInput: "full_number",
+        });
+
+        $(".ui-tel").each(function () {
+          let hiddenInput = $(this).attr('name');
+          $("input[name="+hiddenInput+"-country-code]").val($(this).val());
+        });
+
+        $(".ui-tel").on("countrychange", function() {
+          let hiddenInput = $(this).attr("name");
+          $("input[name="+hiddenInput+"-country-code]").val(this.value);
+        });
+      })
+  </script>
+
+  <style>
+    .iti__arrow {
+      border-top: 4px solid #fff !important;
+    }
+
+    .iti__selected-flag {
+      padding: 0 !important;
+    }
+
+    .iti--allow-dropdown input, .iti--allow-dropdown input[type=text], .iti--allow-dropdown input[type=tel], .iti--separate-dial-code input, .iti--separate-dial-code input[type=text], .iti--separate-dial-code input[type=tel] {
+      padding-left: 42px !important;
+    }
+
+    .iti {
+      display: block !important;
+    }
+  </style>
+</div>

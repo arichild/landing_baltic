@@ -94,8 +94,8 @@
   }
 
   @media(max-width: 768.99px) {
-     padding: 20px;
-     margin: 0 -20px;
+      padding: 60px 20px 40px;
+     margin: 0 -10px;
      border-radius: 6px;
 
      .ui-fields {
@@ -103,9 +103,9 @@
       margin-left: 0;
      }
 
-     .ui-title {
-      margin-bottom: 25px;
-    }
+    //  .ui-title {
+    //   margin-bottom: 25px;
+    // }
 
      .ui-field {
       margin-bottom: 20px;
@@ -129,6 +129,10 @@
   @media(max-width: 576.99px) {
     .ui-title {
       max-width: 280px;
+    }
+
+    .ui-btn {
+      width: 100%;
     }
   }
 }
@@ -189,14 +193,18 @@
 
 
   @media(max-width: 1024.99px) {
-    padding: 30px 34px;
+    padding: 60px 20px 40px;
 
     &-subtitle {
       font-size: 20px;
 
       span {
+        padding-left: 22px;
+
         &::before {
-          top: 4px;
+          top: 6px;
+          height: 15px;
+          left: 11px;
         }
       }
     }
@@ -211,8 +219,8 @@
  }
 
  @media(max-width: 768.99px) {
-    padding: 20px;
-    margin: 0 -20px;
+    // padding: 20px;
+    margin: 0 -10px;
     border-radius: 6px;
 
     &-subtitle {
@@ -221,15 +229,15 @@
       span {
         padding-left: 20px;
         &::before {
-          top: 2px;
-          left: 7px;
+          top: 5px;
+          left: 9px;
         }
       }
     }
 
-    &-header {
-      margin-bottom: 25px;
-    }
+    // &-header {
+    //   margin-bottom: 25px;
+    // }
 
     .ui-fields {
      margin-bottom: 0;
@@ -258,10 +266,22 @@
  @media(max-width: 576.99px) {
   &-subtitle {
     font-size: 16px;
+
+    span {
+      &::before {
+        top: 6px;
+        left: 9px;
+        height: 12px;
+      }
+    }
   }
 
   .ui-title {
     max-width: 280px;
+  }
+
+  .ui-btn {
+    width: 100%;
   }
  }
 }
